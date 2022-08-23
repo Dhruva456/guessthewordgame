@@ -10,6 +10,7 @@ document.getElementById("playerquestion").innerHTML =
   "question turn:" + player1name;
 document.getElementById("playeranswer").innerHTML =
   "answer turn:" + player2name;
+
 function send() {
   getword = document.getElementById("word").value;
   word = getword.toLowerCase();
@@ -31,4 +32,39 @@ function send() {
     "<br><br> <button class='btn btn-info' onclick='check()'> check</button>";
   document.getElementById("output").innerHTML = question + input_box + button;
   document.getElementById("word").value = "";
+}
+Q_turn = "player1";
+A_turn = "player2";
+function check() {
+  getanswer = document.getElementById("input_box").value;
+  answer = getanswer.toLowerCase();
+  console.log(answer);
+  if (answer == word) {
+    if (A_turn == "player1") {
+      player1score = player1score + 1;
+      document.getElementById("player1score").innerHTML = player1score;
+    } else {
+      player2score = player2score + 1;
+      document.getElementById("player2score").innerHTML = player2score;
+    }
+  }
+  if (Q_turn == "player1") {
+    Q_turn = "player2";
+    document.getElementById("playerquestion").innerHTML =
+      "question turn:" + player2name;
+  } else {
+    Q_turn = "player1";
+    document.getElementById("playerquestion").innerHTML =
+      "question turn:" + player1name;
+  }
+  if (A_turn == "player1") {
+    A_turn = "player2";
+    document.getElementById("playeranswer").innerHTML =
+      "answer turn:" + player2name;
+  } else {
+    A_turn = "player1";
+    document.getElementById("playeranswer").innerHTML =
+      "answer turn:" + player1name;
+  }
+  document.getElementById("output").innerHTML = "";
 }
